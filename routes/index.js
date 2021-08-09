@@ -1,14 +1,15 @@
-const userController = require("../controller").user;
-const postController = require("../controller").post;
-const likeController = require("../controller").like;
+const UserController = require("../controller/Users.controller");
+const PostController = require("../controller/Posts.controller");
+const LikeController = require("../controller/Likes.controller");
+
 module.exports = (app) => {
-  app.get("/api/users", userController.getAllUsers);
+  app.get("/api/users", UserController.getAllUsers);
 
-  app.get("/api/:user_id/posts", postController.getAllPostsOfUser);
+  app.get("/api/users/:user_id/posts", PostController.getAllPostsOfUser);
 
-  app.post("/api/post/create", postController.createPost);
+  app.post("/api/post/create", PostController.createPost);
 
-  app.delete("/api/posts/:id", postController.deletePost);
+  app.delete("/api/posts/:id", PostController.deletePost);
 
-  app.post("/api/posts/:post_id/like", likeController.hitLike);
+  app.post("/api/posts/:post_id/like", LikeController.hitLike);
 };
